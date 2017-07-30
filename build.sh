@@ -27,7 +27,7 @@ mkdir -p ${SOFT_DIR}
 
 if [ ! -e ${SRC_DIR}/${SOURCE_FILE}.lock ] && [ ! -s ${SRC_DIR}/${SOURCE_FILE} ] ; then
   touch  ${SRC_DIR}/${SOURCE_FILE}.lock
-  echo "seems like this is the first build - let's geet the source"
+  echo "seems like this is the first build - let's get the source"
   wget https://downloads.sourceforge.net/project/${NAME}/${NAME}/${NAME}-${VERSION}/${SOURCE_FILE} -O ${SRC_DIR}/${SOURCE_FILE}
   echo "releasing lock"
   rm -v ${SRC_DIR}/${SOURCE_FILE}.lock
@@ -41,11 +41,11 @@ else
   echo "continuing from previous builds, using source at " ${SRC_DIR}/${SOURCE_FILE}
 fi
 tar xjf  ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE} --skip-old-files
-mkdir -p ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
-cd ${WORKSPACE}/${NAME}-${VERSION}/build-${BUILD_NUMBER}
+mkdir -p ${WORKSPACE}/${NAME}${VERSION}/build-${BUILD_NUMBER}
+cd ${WORKSPACE}/${NAME}${VERSION}/build-${BUILD_NUMBER}
 
-../configure ABI=64 \
+../configure \
 --enable-shared \
 --enable-static \
 --prefix=${SOFT_DIR}
-make 
+make
