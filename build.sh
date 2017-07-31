@@ -28,7 +28,8 @@ mkdir -p ${SOFT_DIR}
 if [ ! -e ${SRC_DIR}/${SOURCE_FILE}.lock ] && [ ! -s ${SRC_DIR}/${SOURCE_FILE} ] ; then
   touch  ${SRC_DIR}/${SOURCE_FILE}.lock
   echo "seems like this is the first build - let's get the source"
-  wget https://sourceforge.net/projects/argtable/files/${NAME}/${NAME}-${VERSION}/${SOURCE_FILE} -O ${SRC_DIR}/${SOURCE_FILE}
+  # i'm sorry, but whoever thought major.minor and major-minor should go together in a url needs to be shot.
+  wget https://sourceforge.net/projects/argtable/files/argtable/argtable-2.13/argtable2-13.tar.gz -O ${SRC_DIR}/${SOURCE_FILE}
   echo "releasing lock"
   rm -v ${SRC_DIR}/${SOURCE_FILE}.lock
 elif [ -e ${SRC_DIR}/${SOURCE_FILE}.lock ] ; then
